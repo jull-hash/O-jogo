@@ -1,8 +1,9 @@
 import redis
 import os
 import time
+import random
 
-r = redis.Redis(host="10.1.69.78",port=6379, db=0)
+r = redis.Redis(host="localhost",port=6379, db=0)
 r.ping()
 
 
@@ -75,6 +76,13 @@ if player1 == 1:
                 p1 = dados["p1".encode()].decode()
                 p2 = dados["p2".encode()].decode()
                 if p1 != "" and p2 != "":
+                    for i in range(1,20):
+                        num1 = random.randint(1, 100)
+                        num2 = random.randint(1, 100)
+                        limpar_tela()
+                        print (f"\n     |{num1}  ⚔️   {num2}|\n")
+                        time.sleep(0.09)
+                    limpar_tela()
                     p1int = int(p1)
                     pl2int = int(p2)
                     limpar_tela()
@@ -119,6 +127,13 @@ elif player2 == 1:
                 p1 = dados["p1".encode()].decode()
                 p2 = dados["p2".encode()].decode()
                 if p1 != "" and p2 != "":
+                    for i in range(1,20):
+                        num1 = random.randint(1, 100)
+                        num2 = random.randint(1, 100)
+                        limpar_tela()
+                        print (f"\n     |{num1}  ⚔️   {num2}|\n")
+                        time.sleep(0.09)
+                    limpar_tela()
                     p1int = int(p1)
                     pl2int = int(p2)
                     limpar_tela()
