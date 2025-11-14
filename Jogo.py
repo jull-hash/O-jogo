@@ -2,7 +2,7 @@ import redis
 import os
 import time
 
-r = redis.Redis(host="10.1.69.78",port=6379, db=0)
+r = redis.Redis(host="localhost",port=6379, db=0)
 r.ping()
 
 
@@ -15,12 +15,50 @@ jgp2 = ""
 continuamenu= True
 
 
+
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+print("\nJJJOGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n!!!!!!!JJJOGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n\n!!!!!!!!!!!!!!JJJOGO!!!!!!!!!!!!!!!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n\n\n!!!!!!!!!!!!!!!!!!!!!JJJOGO!!!!!!!!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!JJJOGO!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n\n\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!JJJOGO!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n\n\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!OGOJJJ")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!OGOJJJ!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n\n\n!!!!!!!!!!!!!!!!!!!!!OGOJJJ!!!!!!!!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n\n!!!!!!!!!!!!!!OGOJJJ!!!!!!!!!!!!!!!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\n\n!!!!!!!OGOJJJ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+print("\nOGOJJJ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+time.sleep(0.5)
+limpar_tela()
+
            
 while continuamenu==True:
-    limpar_tela()
-    entrada = (input("\n AAAAAADeseja criar uma sala ou entrar em uma sala?\n1- Criar uma sala\n2- Entrar em uma sala existente\nR:"))
+    entrada = (input("\nDeseja criar uma sala ou entrar em uma sala?\n1- Criar uma sala\n2- Entrar em uma sala existente\nR:"))
     if entrada == '1':
         continuamenu=False
         limpar_tela()
@@ -56,10 +94,12 @@ if player1 == 1:
     continua=True
     while continua==True:
         limpar_tela()
-        jgp1 = input("\nFaça sua jogada (apenas números)\nR:")
+        jgp1 = input("\nFaça sua jogada \n(apenas números)\nR:")
+        
+
         if (jgp1.isalpha()):
             limpar_tela()
-            print("\nValor inválido\n")
+            print("\n 🔴 Valor inválido 🔴\n")
             time.sleep(2)
             continua=True
 
@@ -69,7 +109,7 @@ if player1 == 1:
             continua= False
             r.hset(sala,"p1",jgp1)
             r.hset(sala,"p2","")
-            print("\nAguardando jogada do player 2...")
+            print("\nAguardando jogada do player 2... ")
             while True:
                 dados = r.hgetall(sala)
                 p1 = dados["p1".encode()].decode()
