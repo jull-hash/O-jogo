@@ -1,1 +1,1 @@
-# O-jogo
+Para rodar o jogo é necessário ter instalado o módulo do redis e ter uma segunda máquina. Também é necessário que o ip ao iniciar o jogo esteja como "localhost", basta substituir o ip padrão que está no codigo python
