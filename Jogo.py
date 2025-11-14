@@ -3,7 +3,7 @@ import os
 import time
 import random
 
-r = redis.Redis(host="localhost",port=6379, db=0)
+r = redis.Redis(host="10.1.69.95",port=6379, db=0)
 r.ping()
 
 
@@ -108,15 +108,37 @@ if player1 == 1:
 
         elif jgp1 != "":
             limpar_tela()
+            aguardandocontinua=True
             continua= False
             r.hset(sala,"p1",jgp1)
             r.hset(sala,"p2","")
-            print("\nAguardando jogada do player 2... ")
+
+            while aguardandocontinua == True:
+                print("\nAguardando jogada do player 2...🕝")
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 2...🕑")
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 2...🕜")
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 2...🕐") 
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 2...🕧")
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 2...🕛")    
+                time.sleep(0.5)
+                limpar_tela()
+
             while True:
                 dados = r.hgetall(sala)
                 p1 = dados["p1".encode()].decode()
                 p2 = dados["p2".encode()].decode()
                 if p1 != "" and p2 != "":
+                    aguardandocontinua= False
                     for i in range(1,20):
                         num1 = random.randint(1, 100)
                         num2 = random.randint(1, 100)
@@ -159,15 +181,37 @@ elif player2 == 1:
 
 
         elif jgp2 != "":
+            aguardandocontinua= True
             limpar_tela()
             continua= False
             r.hset(sala,"p2",jgp2)
-            print("\nAguardando jogada do player 1...")
+
+            while aguardandocontinua == True:
+                print("\nAguardando jogada do player 1...🕝")
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 1...🕑")
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 1...🕜")
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 1...🕐") 
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 1...🕧")
+                time.sleep(0.5)
+                limpar_tela()
+                print("\nAguardando jogada do player 1...🕛")    
+                time.sleep(0.5)
+                limpar_tela()
+
             while True:
                 dados = r.hgetall(sala)
                 p1 = dados["p1".encode()].decode()
                 p2 = dados["p2".encode()].decode()
                 if p1 != "" and p2 != "":
+                    aguardandocontinua = False
                     for i in range(1,20):
                         num1 = random.randint(1, 100)
                         num2 = random.randint(1, 100)
