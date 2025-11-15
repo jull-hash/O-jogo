@@ -3,7 +3,7 @@ import os
 import time
 import random
 
-r = redis.Redis(host="10.1.69.161",port=6379, db=0)
+r = redis.Redis(host="localhost",port=6379, db=0)
 r.ping()
 
 
