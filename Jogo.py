@@ -3,7 +3,7 @@ import os
 import time
 import random
 
-r = redis.Redis(host="localhost",port=6379, db=0)
+r = redis.Redis(host="10.1.69.161",port=6379, db=0)
 r.ping()
 
 
@@ -28,18 +28,18 @@ def menu():
         entrada = (input("\nDeseja criar uma sala ou entrar em uma sala?\n1- Criar uma sala\n2- Entrar em uma sala existente\nR:"))
         if entrada == '1':
             continuamenu=False
-            limpar_tela()
             while True:
-
-
+                limpar_tela()
                 sala = input("\nNome da sala\nR:")
 
                 if r.exists(sala):
+                    limpar_tela()
                     print("\n❌ A sala já existe, tente novamente ❌")
-                    continue
+                    time.sleep(2)
 
                 elif sala!= "":
                     player1 += 1
+                    r.hset(sala,"p1","")
                     main()
                     break
        
@@ -47,11 +47,17 @@ def menu():
             continuamenu=False
             limpar_tela()
             while True:
+                limpar_tela()
                 print("OBS:\nAo tentar entrar na sala, se acontecer de não reconhecer o 'p1'\né provável que a sala não exista.")
                 sala = (input("\nDigite o número da sala que você vai entrar\nR:"))
 
 
-                if sala != "":
+                if not r.exists(sala):
+                    limpar_tela()
+                    print("\n❌ A sala não existe, tente novamente ❌")
+                    time.sleep(2)
+                    
+                elif sala != "":
                     player2 += 1
                     main()
                     break
@@ -106,7 +112,6 @@ def main():
                             print(" 🎉 P1 venceu! 🎉")
                             print(p1int,">",pl2int)
                             r.delete(sala)
-                            r.delete(sala)
                             
                             
                             continuarrr=True
@@ -137,7 +142,6 @@ def main():
                             print("🎉 P2 venceu! 🎉")
                             print(p1int,"<",pl2int)
                             r.delete(sala)
-                            r.delete(sala)
                             
                             
                             continuarrr=True
@@ -167,8 +171,7 @@ def main():
                         elif p1int == pl2int:
                             print(" 😵‍💫 ! EMPATE! 😵‍💫")
                             print(f"!!{p1int} = {pl2int}!!")
-                            r.delete(sala)
-                            r.delete(sala)                            
+                            r.delete(sala)                          
                             continuarrr=True
                             while continuarrr == True:
                                 jogadnv = input("\nQuer jogar de novo? 1 - Sim | 2 - Não\nR:")
@@ -232,7 +235,8 @@ def main():
                         limpar_tela()
                         if p1int > pl2int:
                             print("🎉  P1 venceu! 🎉")
-                            print(p1int,">",pl2int)                  
+                            print(p1int,">",pl2int)
+                            r.delete(sala)                  
                             continuarrr=True
                             while continuarrr == True:
                                 jogadnv = input("\nQuer jogar de novo? 1 - Sim | 2 - Não\nR:")
@@ -260,6 +264,7 @@ def main():
                         elif pl2int > p1int:
                             print("🎉 P2 venceu! 🎉")
                             print(p1int,"<",pl2int)
+                            r.delete(sala)
                             continuarrr=True
                             while continuarrr == True:
                                 jogadnv = input("\nQuer jogar de novo? 1 - Sim | 2 - Não\nR:")
@@ -286,6 +291,7 @@ def main():
                         elif p1int == pl2int:
                             print(" 😵‍💫 !EMPATE! 😵‍💫")
                             print(f"!!{p1int} = {pl2int}!!")
+                            r.delete(sala)
                             
                             continuarrr=True
                             while continuarrr == True:
