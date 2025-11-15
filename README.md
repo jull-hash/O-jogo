@@ -1,5 +1,7 @@
 README - JJJOGO
+
 Introdução
+
 Este projeto consiste em um jogo, onde dois jogadores batalham e o jogador que digitar o maior número vence.
 O projeto foi desenvolvido inteiramente em linguagem Python. O jogo é executado no terminal e oferece uma experiência interativa e divertida. O objetivo é apresentar um processo de CRUD completo.
 Propósito
